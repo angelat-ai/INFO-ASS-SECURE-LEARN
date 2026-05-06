@@ -1,0 +1,165 @@
+.confettiCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 100;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--white, #fff);
+  position: relative;
+  overflow-x: hidden;
+  padding: 40px;
+}
+
+.backBtn {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  background: none;
+  border: none;
+  color: #666;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  z-index: 10;
+  transition: color 0.3s;
+}
+
+.backBtn:hover {
+  color: var(--primary-pink, #e91e63);
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
+}
+
+.title {
+  font-size: 2.5rem;
+  color: var(--text-dark, #333);
+  margin-bottom: 30px;
+  background: linear-gradient(135deg, #e91e63, #ff4081);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.circleWrap {
+  position: relative;
+  width: 130px;
+  height: 130px;
+  margin-bottom: 20px;
+}
+
+.pctText {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: var(--text-dark, #333);
+}
+
+.subText {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.xpEarned {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #4caf50;
+  margin-bottom: 30px;
+}
+
+.badgesRow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 40px;
+  width: 100%;
+}
+
+.badgeItem {
+  background: var(--glass-bg, rgba(255, 255, 255, 0.7));
+  border: var(--glass-border, 1px solid rgba(255, 255, 255, 0.5));
+  box-shadow: var(--glass-shadow, 0 8px 32px rgba(233, 30, 140, 0.1));
+  border-radius: 15px;
+  padding: 15px 20px;
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  text-align: left;
+}
+
+.badgeImg {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+}
+
+.badgeName {
+  font-weight: bold;
+  color: var(--text-dark, #333);
+  margin-bottom: 3px;
+}
+
+.badgeSub {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.btnRow {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.dashBtn, .nextBtn {
+  padding: 12px 30px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.dashBtn {
+  background: white;
+  color: var(--primary-pink, #e91e63);
+  border: 2px solid var(--primary-pink, #e91e63);
+}
+
+.dashBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(233, 30, 99, 0.2);
+}
+
+.nextBtn {
+  background: var(--primary-pink, #e91e63);
+  color: white;
+  border: none;
+  box-shadow: 0 8px 20px rgba(233, 30, 99, 0.3);
+}
+
+.nextBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 25px rgba(233, 30, 99, 0.4);
+}

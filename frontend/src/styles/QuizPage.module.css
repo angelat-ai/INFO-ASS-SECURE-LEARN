@@ -1,0 +1,224 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--white, #fff);
+}
+
+.topBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background: var(--glass-bg, rgba(255, 255, 255, 0.7));
+  border-bottom: var(--glass-border, 1px solid rgba(255, 255, 255, 0.5));
+  backdrop-filter: blur(10px);
+}
+
+.backBtn {
+  background: none;
+  border: none;
+  color: #666;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.backBtn:hover {
+  color: var(--primary-pink, #e91e63);
+}
+
+.questionCount {
+  font-weight: 600;
+  color: var(--primary-pink, #e91e63);
+}
+
+.progressWrap {
+  height: 6px;
+  background: #fce4ec;
+  width: 100%;
+}
+
+.progressBar {
+  height: 100%;
+  background: linear-gradient(90deg, #f48fb1, #e91e63);
+  transition: width 0.5s ease-in-out;
+}
+
+.content {
+  flex: 1;
+  padding: 40px;
+  max-width: 800px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.question {
+  font-size: 1.8rem;
+  color: var(--text-dark, #333);
+  margin-bottom: 30px;
+  line-height: 1.4;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px 20px;
+  border: 2px solid var(--border-color, #fce4ec);
+  border-radius: 12px;
+  background: white;
+  font-size: 1.1rem;
+  color: var(--text-dark, #333);
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: left;
+}
+
+.option:hover:not(:disabled) {
+  border-color: var(--primary-pink, #e91e63);
+  background: #fff5f8;
+}
+
+.optionRadio {
+  font-size: 1.5rem;
+  color: #ccc;
+  width: 24px;
+  text-align: center;
+}
+
+.optionSelected {
+  border-color: var(--primary-pink, #e91e63);
+  background: #fff5f8;
+}
+
+.optionSelected .optionRadio {
+  color: var(--primary-pink, #e91e63);
+}
+
+.optionCorrect, .optionCorrectReveal {
+  border-color: #4caf50;
+  background: #e8f5e9;
+}
+
+.optionCorrect .optionRadio, .optionCorrectReveal .optionRadio {
+  color: #4caf50;
+}
+
+.optionWrong {
+  border-color: #f44336;
+  background: #ffebee;
+}
+
+.optionWrong .optionRadio {
+  color: #f44336;
+}
+
+.option:disabled {
+  cursor: default;
+}
+
+.retryMsg {
+  color: #f44336;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+  animation: shake 0.5s;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+.explanation {
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  animation: fadeIn 0.4s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.explanationCorrect {
+  background: #e8f5e9;
+  border: 1px solid #c8e6c9;
+}
+
+.explanationWrong {
+  background: #ffebee;
+  border: 1px solid #ffcdd2;
+}
+
+.explanationTitle {
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.explanationCorrect .explanationTitle { color: #2e7d32; }
+.explanationWrong .explanationTitle { color: #c62828; }
+
+.explanationText {
+  color: #333;
+  line-height: 1.5;
+}
+
+.confirmBtn, .nextBtn {
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: white;
+  background: var(--primary-pink, #e91e63);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+  align-self: flex-end;
+  margin-top: auto;
+}
+
+.confirmBtn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.confirmBtn:hover:not(:disabled), .nextBtn:hover {
+  background: var(--secondary-pink, #d81b60);
+  transform: translateY(-2px);
+}
+
+.notFound {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  gap: 20px;
+  font-size: 1.5rem;
+  color: #666;
+}
+
+.notFound button {
+  padding: 10px 20px;
+  background: var(--primary-pink, #e91e63);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}

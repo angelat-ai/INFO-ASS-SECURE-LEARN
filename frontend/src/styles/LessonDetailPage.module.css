@@ -1,0 +1,202 @@
+.page {
+  min-height: 100vh;
+  background: var(--pink-pale);
+  display: flex;
+  flex-direction: column;
+}
+
+.topBar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 32px;
+  background: var(--white);
+  border-bottom: 1.5px solid var(--pink-border);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.backBtn {
+  background: none;
+  border: none;
+  font-size: 0.95rem;
+  color: var(--text-mid);
+  cursor: pointer;
+  font-weight: 600;
+  transition: color 0.2s;
+  padding: 0;
+}
+
+.backBtn:hover {
+  color: var(--pink-deep);
+}
+
+.levelTag {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border: 1.5px solid #a5d6a7;
+  border-radius: 20px;
+  padding: 5px 16px;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.timerBox {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+}
+
+.timerIcon {
+  font-size: 1.1rem;
+}
+
+.timerText {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text-mid);
+  font-variant-numeric: tabular-nums;
+}
+
+.xpTag {
+  color: var(--pink-deep);
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.content {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 48px 32px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  position: relative;
+}
+
+.lessonTitle {
+  font-family: "Playfair Display", serif;
+  font-size: 2.4rem;
+  color: var(--text-dark);
+  text-align: center;
+  line-height: 1.2;
+}
+
+.lessonSub {
+  text-align: center;
+  font-size: 0.92rem;
+  color: var(--text-soft);
+  margin-top: -12px;
+}
+
+.progressScroll {
+  width: 6px;
+  height: 200px;
+  background: var(--pink-light);
+  border-radius: 3px;
+  position: fixed;
+  right: 32px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.scrollBar {
+  width: 100%;
+  height: 30%;
+  background: var(--pink-deep);
+  border-radius: 3px;
+}
+
+.sections {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  animation: fadeSection 0.5s ease both;
+}
+
+@keyframes fadeSection {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.sectionHeading {
+  font-family: "Playfair Display", serif;
+  font-size: 1.3rem;
+  color: var(--text-dark);
+  font-weight: 700;
+}
+
+.sectionBody {
+  font-size: 0.97rem;
+  color: var(--text-mid);
+  line-height: 1.75;
+}
+
+.sourceLink {
+  font-size: 0.82rem;
+  color: var(--pink-deep);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 0.2s;
+}
+
+.sourceLink:hover {
+  color: #c2185b;
+}
+
+.codeExample {
+  background: var(--white);
+  border: 1.5px solid var(--pink-border);
+  border-radius: var(--radius-md);
+  padding: 20px 24px;
+}
+
+.codeLabel {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-soft);
+  margin-bottom: 10px;
+}
+
+.codeBlock {
+  font-family: "Courier New", monospace;
+  font-size: 0.92rem;
+  color: var(--text-dark);
+  line-height: 1.7;
+  white-space: pre-wrap;
+}
+
+.quizBtn {
+  width: 100%;
+  padding: 18px;
+  background: var(--pink-deep);
+  color: var(--white);
+  font-size: 1.05rem;
+  font-weight: 700;
+  border-radius: 50px;
+  transition: var(--transition);
+  margin-top: 16px;
+}
+
+.quizBtn:hover {
+  background: #c2185b;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(233, 30, 140, 0.38);
+}
+
+.notFound {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  gap: 16px;
+}

@@ -1,0 +1,108 @@
+.sidebar {
+  width: 80px;
+  min-height: 100vh;
+  background: var(--white);
+  border-right: 1.5px solid var(--pink-border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 100;
+  gap: 8px;
+}
+
+.logoMark {
+  margin-bottom: 16px;
+}
+
+.logoIcon {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  border-radius: 12px;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+  width: 100%;
+}
+
+.navItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 12px 8px;
+  width: 100%;
+  text-decoration: none;
+  color: var(--text-soft);
+  transition: var(--transition);
+  position: relative;
+  border-radius: 0;
+}
+
+.navItem::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: var(--pink-deep);
+  transition: width 0.3s ease;
+  border-radius: 1px;
+}
+
+.navItem:hover {
+  color: var(--pink-deep);
+  background: var(--pink-pale);
+}
+
+.navItem.active {
+  color: var(--pink-deep);
+}
+
+.navItem.active::after {
+  width: 32px;
+}
+
+.navIcon {
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.navLabel {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+
+.logoutBtn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 12px 8px;
+  width: 100%;
+  background: none;
+  border: none;
+  color: var(--text-soft);
+  cursor: pointer;
+  transition: var(--transition);
+  margin-top: auto;
+}
+
+.logoutBtn:hover {
+  color: var(--error);
+  background: #ffebee;
+}

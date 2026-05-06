@@ -1,0 +1,111 @@
+.page {
+  display: flex;
+  min-height: 100vh;
+  background: var(--white, #fff);
+  overflow: hidden;
+}
+
+.leftPanel {
+  width: 45%;
+  background: linear-gradient(160deg, #fce4ec 0%, #f8bbd0 60%, #f48fb1 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border-radius: 0 60px 60px 0;
+  overflow: hidden;
+}
+
+.heroWrap {
+  z-index: 1;
+}
+
+.shieldImg {
+  width: 300px;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 24px rgba(233, 30, 140, 0.25));
+  animation: floatImg 3s ease-in-out infinite;
+}
+
+@keyframes floatImg {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+.rightPanel {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: var(--white, #fff);
+  padding: 40px;
+}
+
+.content {
+  max-width: 500px;
+  width: 100%;
+}
+
+.title {
+  font-size: 3rem;
+  color: var(--primary-pink, #e91e63);
+  margin-bottom: 10px;
+  font-weight: 800;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 40px;
+}
+
+.featureList {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 40px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.featureItem {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: var(--glass-bg, rgba(255, 255, 255, 0.7));
+  border: var(--glass-border, 1px solid rgba(255, 255, 255, 0.5));
+  box-shadow: var(--glass-shadow, 0 8px 32px rgba(233, 30, 140, 0.1));
+  padding: 15px 20px;
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+}
+
+.featureIcon {
+  font-size: 1.8rem;
+}
+
+.featureText {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-dark, #333);
+}
+
+.beginBtn {
+  width: 100%;
+  padding: 16px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: white;
+  background: var(--primary-pink, #e91e63);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.3s;
+}
+
+.beginBtn:hover {
+  transform: translateY(-2px);
+  background: var(--secondary-pink, #d81b60);
+}

@@ -1,0 +1,237 @@
+.page {
+  display: flex;
+  min-height: 100vh;
+  background: var(--white);
+  overflow: hidden;
+}
+
+.leftPanel {
+  width: 45%;
+  background: linear-gradient(160deg, #fdf0f5 0%, #fce4ec 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border-radius: 0 60px 60px 0;
+  overflow: hidden;
+}
+
+.avatarShowcase {
+  position: relative;
+  width: 320px;
+  height: 380px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.showcaseChar {
+  position: absolute;
+  bottom: 0;
+  width: 130px;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 16px rgba(0,0,0,0.12));
+  transition: all 0.4s ease;
+  opacity: 0.5;
+  transform: scale(0.9);
+}
+
+.showcaseChar:nth-child(1) { left: 0; z-index: 1; }
+.showcaseChar:nth-child(2) { left: 50%; transform: translateX(-50%) scale(0.9); z-index: 2; }
+.showcaseChar:nth-child(3) { right: 0; z-index: 1; }
+
+.showcaseChar.active {
+  opacity: 1;
+  transform: scale(1.05);
+  z-index: 10;
+}
+
+.showcaseChar:nth-child(2).active {
+  transform: translateX(-50%) scale(1.05);
+}
+
+.cloudDecor {
+  position: absolute;
+  top: 60px;
+  right: 40px;
+  width: 60px;
+  animation: floatCloud 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes floatCloud {
+  from { transform: translateY(0); }
+  to { transform: translateY(-10px); }
+}
+
+.rightPanel {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--pink-pale);
+  padding: 40px;
+}
+
+.card {
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.title {
+  font-family: "Playfair Display", serif;
+  font-size: 2rem;
+  color: var(--text-dark);
+  line-height: 1.2;
+}
+
+.subtitle {
+  font-size: 0.92rem;
+  color: var(--text-soft);
+  margin-top: -8px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-mid);
+}
+
+.input {
+  width: 100%;
+  padding: 14px 18px;
+  border: 1.5px solid var(--pink-border);
+  border-radius: var(--radius-md);
+  background: var(--white);
+  font-size: 1rem;
+  color: var(--text-dark);
+  transition: var(--transition);
+}
+
+.input:focus {
+  border-color: var(--pink-mid);
+  box-shadow: 0 0 0 3px rgba(240, 98, 146, 0.12);
+}
+
+.hint {
+  font-size: 0.82rem;
+  color: var(--text-soft);
+}
+
+.avatarSection {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.avatarLabel {
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--text-mid);
+}
+
+.avatarGrid {
+  display: flex;
+  gap: 12px;
+}
+
+.avatarBtn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 8px;
+  border: 2px solid var(--pink-border);
+  border-radius: var(--radius-md);
+  background: var(--white);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.avatarBtn:hover {
+  border-color: var(--pink-mid);
+  transform: translateY(-2px);
+}
+
+.avatarBtn.selected {
+  border-color: var(--pink-deep);
+  background: #fce4ec;
+  box-shadow: 0 4px 16px rgba(233, 30, 140, 0.15);
+}
+
+.avatarImg {
+  width: 70px;
+  height: 90px;
+  object-fit: contain;
+}
+
+.avatarName {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-mid);
+}
+
+.error {
+  font-size: 0.85rem;
+  color: var(--error);
+  background: #ffebee;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--error);
+}
+
+.continueBtn {
+  width: 100%;
+  padding: 16px;
+  background: var(--pink-deep);
+  color: var(--white);
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 50px;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+}
+
+.continueBtn:hover:not(:disabled) {
+  background: #c2185b;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(233, 30, 140, 0.38);
+}
+
+.continueBtn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255,255,255,0.4);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  display: inline-block;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 768px) {
+  .page { flex-direction: column; }
+  .leftPanel { width: 100%; height: 200px; border-radius: 0 0 40px 40px; }
+  .rightPanel { padding: 32px 20px; }
+  .title { font-size: 1.6rem; }
+}
