@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { authAPI } from "../services/api";
+import { useAuth } from "../context/AuthContext";
 import PasswordStrength from "../components/PasswordStrength";
 import styles from "../styles/SignupPage.module.css";
 
@@ -16,6 +17,7 @@ export default function SignupPage() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const { login } = useAuth();
   const containerRef = useRef(null);
 
   useEffect(() => {
@@ -66,9 +68,8 @@ export default function SignupPage() {
         email: form.email,
         password: form.password,
       });
-      sessionStorage.setItem("pending_email", form.email);
-      if (res.dev_otp) sessionStorage.setItem("dev_otp", res.dev_otp);
-      navigate("/verify-otp");
+      login(res.user, res.access);
+      navigate("/welcome");
     } catch (err) {
       setError(err.message || "Registration failed. Try again.");
     } finally {
