@@ -1,6 +1,4 @@
 import random
-from django.core.mail import send_mail
-from django.conf import settings
 from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny, IsAuthenticated
@@ -24,18 +22,10 @@ def send_otp_email(user):
     otp = generate_otp()
     user.otp_code = otp
     user.save()
-    
-    subject = 'SecureLearn - Your Verification Code'
-    message = f'Your verification code is: {otp}\n\nPlease enter this code to verify your account.'
-    email_from = settings.EMAIL_HOST_USER
-    recipient_list = [user.email]
-    
-    try:
-        send_mail(subject, message, email_from, recipient_list)
-    except Exception as e:
-        print(f"Error sending email: {e}")
-        # In development, it's helpful to print the OTP if email fails
-        print(f"--- OTP FOR {user.email} is {otp} ---")
+    print(f"\n{'='*40}")
+    print(f"OTP FOR {user.email}: {otp}")
+    print(f"{'='*40}\n")
+    return otp
 
 @api_view(['POST'])
 @permission_classes([AllowAny])
@@ -43,8 +33,11 @@ def register_view(request):
     serializer = RegisterSerializer(data=request.data)
     if serializer.is_valid():
         user = serializer.save()
-        send_otp_email(user)
-        return Response({"message": "User registered successfully. OTP sent to email."}, status=status.HTTP_201_CREATED)
+        otp = send_otp_email(user)
+        return Response({
+            "message": "User registered successfully.",
+            "dev_otp": otp
+        }, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['POST'])
@@ -52,17 +45,16 @@ def register_view(request):
 def verify_otp_view(request):
     email = request.data.get('email')
     otp = request.data.get('otp')
-    
+
     try:
         user = User.objects.get(email=email)
     except User.DoesNotExist:
         return Response({"detail": "User not found."}, status=status.HTTP_404_NOT_FOUND)
-        
+
     if user.otp_code == otp:
         user.is_verified = True
         user.otp_code = None
         user.save()
-        
         tokens = get_tokens_for_user(user)
         return Response({
             "message": "Email verified successfully.",
@@ -70,7 +62,7 @@ def verify_otp_view(request):
             "access": tokens['access'],
             "refresh": tokens['refresh']
         }, status=status.HTTP_200_OK)
-        
+
     return Response({"detail": "Invalid OTP code."}, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['POST'])
@@ -79,8 +71,11 @@ def resend_otp_view(request):
     email = request.data.get('email')
     try:
         user = User.objects.get(email=email)
-        send_otp_email(user)
-        return Response({"message": "OTP resent successfully."}, status=status.HTTP_200_OK)
+        otp = send_otp_email(user)
+        return Response({
+            "message": "OTP resent successfully.",
+            "dev_otp": otp
+        }, status=status.HTTP_200_OK)
     except User.DoesNotExist:
         return Response({"detail": "User not found."}, status=status.HTTP_404_NOT_FOUND)
 
@@ -89,28 +84,26 @@ def resend_otp_view(request):
 def login_view(request):
     username = request.data.get('username')
     password = request.data.get('password')
-    
-    # Allow login by email as well
+
     if '@' in username:
         try:
             user_obj = User.objects.get(email=username)
             username = user_obj.username
         except User.DoesNotExist:
             pass
-            
+
     user = authenticate(username=username, password=password)
-    
+
     if user is not None:
         if not user.is_verified:
             return Response({"detail": "Please verify your email first."}, status=status.HTTP_403_FORBIDDEN)
-            
         tokens = get_tokens_for_user(user)
         return Response({
             "user": UserSerializer(user).data,
             "access": tokens['access'],
             "refresh": tokens['refresh']
         }, status=status.HTTP_200_OK)
-    
+
     return Response({"detail": "Invalid credentials."}, status=status.HTTP_401_UNAUTHORIZED)
 
 @api_view(['POST'])
@@ -119,11 +112,9 @@ def set_nickname_view(request):
     nickname = request.data.get('nickname')
     if not nickname:
         return Response({"detail": "Nickname is required."}, status=status.HTTP_400_BAD_REQUEST)
-        
     user = request.user
     user.nickname = nickname
     user.save()
-    
     return Response({"message": "Nickname set successfully.", "nickname": nickname}, status=status.HTTP_200_OK)
 
 @api_view(['GET', 'PATCH'])
